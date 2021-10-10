@@ -48,38 +48,48 @@ namespace TcpEchoServer
             NetworkStream ns = socket.GetStream();
             StreamReader reader = new StreamReader(ns);
             StreamWriter writer = new StreamWriter(ns);
-            string message = reader.ReadLine();
-
             BookManager manager = new BookManager(new AppDbContext(new DbContextOptions<AppDbContext>()));
 
-            if (message == "Exit") ;
+            while (true)
+            {
+                Console.WriteLine("/////////Client is connected////////////");
+                string message = reader.ReadLine();
+
+                if (message == "Exit")
+                break;
+                else
+                {
+                    Console.WriteLine("Client side: " + message);
+
+                    switch (message)
+                    {
+                        //case "GetAll":
+                            //var listOfBooks = manager.GetAll();
+                            //Book book = JsonSerializer.Deserialize<Book>(message);
+                            //foreach (var item in listOfBooks)
+                            //{
+                            //    writer.WriteLine(book.Title);
+                            //    writer.WriteLine(item.Author);
+                            //    writer.WriteLine(item.BookId);
+                            //    writer.WriteLine(item.ISBN13);
+                            //    writer.WriteLine(item.PageNumber);
+                            //}
+                            //break;
+                            
+
+                    }
+
+                }
 
 
-            Book book = JsonSerializer.Deserialize<Book>(message);
+                
+                Console.WriteLine("Server received the book: " + message);
 
-            Console.WriteLine("Server received the book: " + message);
-
-            //switch (message)
-            //{
-            //    case "GetAll":
-            //        var listOfBooks = manager.GetAll();
-            //        foreach (var item in listOfBooks)
-            //        {
-            //            writer.WriteLine(item.Title);
-            //            writer.WriteLine(book.Author);
-            //            writer.WriteLine(book.BookId);
-            //            writer.WriteLine(book.ISBN13);
-            //            writer.WriteLine(book.PageNumber);
-            //        }
-
-            //        break;
-            //    //case "Get":
-
-            //}
-
-            writer.Write("Book received");
-            writer.Flush();
-            socket.Close();
+                writer.Write("Book received");
+                writer.Flush();
+                socket.Close();
+            }
+            
         }
 
     }

@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="ClassLibraryNET">
+      <HintPath>..\..\..\..\source\repos\WebApplicationNET\WebApplicationNET\NewDll\ClassLibraryNET.dll</HintPath>
+    </Reference>
+    <Reference Include="WebApplicationClass">
+      <HintPath>bin\Debug\net5.0\WebApplicationClass.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>
